@@ -7,6 +7,6 @@ CREATE TABLE checkingsaccounts(
 CREATE TABLE savingsaccounts(
     code varchar(36) PRIMARY KEY NOT NULL,
     balance decimal(10,2),
-    interest_rate decimal(1,3),
+    interest_rate decimal(10,3),
     check (interest_rate <= 1 and interest_rate >= 0.01)
 );
