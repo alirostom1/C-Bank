@@ -7,6 +7,7 @@ import io.github.alirostom1.cbank.model.entity.SavingsAccount;
 import io.github.alirostom1.cbank.model.entity.CheckingsAccount;
 import io.github.alirostom1.cbank.util.Generator;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class AccountServiceImpl implements AccountServiceInterface{
     private final AccountRepositoryInterface accountRepository; 
@@ -16,25 +17,25 @@ public class AccountServiceImpl implements AccountServiceInterface{
         this.accountRepository = accountRepository;
     }
 
-    public boolean createAccount(String type){
+    public Optional<String> createAccount(String type){
         String code = Generator.generateCode();
         if(type.equals("savings")){
             SavingsAccount saveAcc = new SavingsAccount(code,0.00);
             try{
                 accountRepository.store(saveAcc);
-                return true;
+                return Optional.of(code);
             }catch(SQLException e){
-                return false;
+                return Optional.empty();
             }
         }else if(type.equals("checkings")){
             CheckingsAccount checkAcc = new CheckingsAccount(code,0.00);
             try{
                 accountRepository.store(checkAcc);
-                return true;
+                return Optional.of(code);
             }catch(SQLException e){
-                return false;
+                return Optional.empty();
             }
         }
-        return false;
+        return Optional.empty();
     }
 }
