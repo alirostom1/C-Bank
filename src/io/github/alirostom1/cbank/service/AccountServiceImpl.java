@@ -2,17 +2,18 @@ package io.github.alirostom1.cbank.service;
 
 import io.github.alirostom1.cbank.service.Interface.AccountServiceInterface;
 import io.github.alirostom1.cbank.repository.AccountRepositoryImpl;
+import io.github.alirostom1.cbank.repository.Interface.AccountRepositoryInterface;
 import io.github.alirostom1.cbank.model.entity.SavingsAccount;
 import io.github.alirostom1.cbank.model.entity.CheckingsAccount;
 import io.github.alirostom1.cbank.util.Generator;
 import java.sql.SQLException;
 
 public class AccountServiceImpl implements AccountServiceInterface{
-    private final AccountRepositoryImpl accountRepository; 
+    private final AccountRepositoryInterface accountRepository; 
     
 
-    public AccountServiceImpl(){
-        this.accountRepository = new AccountRepositoryImpl();
+    public AccountServiceImpl(AccountRepositoryInterface accountRepository){
+        this.accountRepository = accountRepository;
     }
 
     public boolean createAccount(String type){
