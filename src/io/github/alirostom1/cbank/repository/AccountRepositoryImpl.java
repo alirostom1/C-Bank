@@ -2,7 +2,6 @@ package io.github.alirostom1.cbank.repository;
 
 import io.github.alirostom1.cbank.model.entity.CheckingsAccount;
 import io.github.alirostom1.cbank.model.entity.SavingsAccount;
-import io.github.alirostom1.cbank.util.DatabaseConnection;
 import java.sql.*;
 import io.github.alirostom1.cbank.repository.Interface.AccountRepositoryInterface;
 import io.github.alirostom1.cbank.model.entity.Account;
@@ -11,8 +10,8 @@ import java.util.Optional;
 public class AccountRepositoryImpl implements AccountRepositoryInterface{
     private final Connection connection;
 
-    public AccountRepositoryImpl(){
-        this.connection = DatabaseConnection.getInstance().getConnection();
+    public AccountRepositoryImpl(Connection connection){
+        this.connection = connection;
     }
     
     public boolean store(Account account) throws SQLException{
