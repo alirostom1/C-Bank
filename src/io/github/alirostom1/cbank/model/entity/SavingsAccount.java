@@ -2,11 +2,15 @@
 package io.github.alirostom1.cbank.model.entity;
 
 public class SavingsAccount extends Account{
-    private double interest = 0.05;
+    private double interest;
 
     public SavingsAccount(String code,double balance,double interest){
         super(code,balance);
         this.interest = interest;
+    }
+    public SavingsAccount(String code,double balance){
+        super(code,balance);
+        this.interest = 0.05;
     }
 
     public void setInterest(double interest){
@@ -28,6 +32,7 @@ public class SavingsAccount extends Account{
         return balance * interest;
     }
     public void displayDetails(){
+        System.out.println("type : Savings");
         System.out.println("Code : " + code);
         System.out.println("balance : " + balance);
         System.out.println("interest rate : " + interest);
