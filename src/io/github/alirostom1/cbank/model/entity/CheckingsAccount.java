@@ -30,6 +30,7 @@ public class CheckingsAccount extends Account{
         return 0;
     }
     public void displayDetails(){
+        System.out.println("type  : Checkings acouunt");
         System.out.println("Code : " + code);
         System.out.println("balance : " + balance);
         System.out.println("overdraft limit : " + overdraftLimit);
