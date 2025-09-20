@@ -94,7 +94,11 @@ public class OperationServiceImpl implements OperationServiceInterface{
         }
     }
     public List<Operation> getAll(String code) throws Exception{
-       return new ArrayList<>();
+        try{
+            return opRepo.getAll(code);
+        }catch(Exception e){
+            throw e;
+        }
     }
  
 

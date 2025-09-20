@@ -63,6 +63,7 @@ public class OperationRepositoryImpl implements OperationRepositoryInterface{
                 if(rs.getString("operation_type").equals("withdrawal")){
                     query = "Select * from withdrawals where id = ? ";
                     try(PreparedStatement stmt2 = connection.prepareStatement(query)){
+                        
                         stmt2.setString(1,rs.getString("id"));
                         ResultSet rs2 = stmt2.executeQuery();
                         rs2.next();
@@ -73,13 +74,16 @@ public class OperationRepositoryImpl implements OperationRepositoryInterface{
                                                 rs.getString("code"),
                                                 Destination.valueOf(rs2.getString("destination"))
                                             );
-                        ops.add(op);  
-                    }
+                                            ops.add(op);  
+                                        }
+                                        
                 }else{
                     query = "Select * from deposits where id = ? ";
                     try(PreparedStatement stmt2 = connection.prepareStatement(query)){
                         stmt2.setString(1,rs.getString("id"));
+                        System.out.println("in");
                         ResultSet rs2 = stmt2.executeQuery();
+                        rs2.next();
                         Deposit op = new Deposit(
                                             rs.getString("id"),
                                             rs.getTimestamp("date").toLocalDateTime(),
