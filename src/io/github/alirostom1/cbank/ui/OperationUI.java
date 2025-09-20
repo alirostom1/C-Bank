@@ -1,10 +1,12 @@
 package io.github.alirostom1.cbank.ui;
 
+import java.util.List;
 import java.util.Scanner;
 
 import io.github.alirostom1.cbank.model.enums.Destination;
 
 import io.github.alirostom1.cbank.model.entity.Deposit;
+import io.github.alirostom1.cbank.model.entity.Operation;
 import io.github.alirostom1.cbank.model.entity.Withdrawal;
 import io.github.alirostom1.cbank.model.enums.Source;
 import io.github.alirostom1.cbank.service.Interface.OperationServiceInterface;
@@ -38,7 +40,7 @@ public class OperationUI{
                     transfer();
                     break;
                 case 4:
-                    //displayOperations();
+                    displayOperations();
                     break;
                 case 5 : 
                     System.out.println("Returning...");
@@ -115,6 +117,36 @@ public class OperationUI{
                 System.out.println("Transfer successful!");
             }else{
                 System.out.println("Transfer failed! Please check your account code and try again.");
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Press Anything to move further !");
+        scanner.nextLine();
+        return;
+    }
+    public void displayOperations(){
+        System.out.println("Please enter your account code: ");
+        String accCode = scanner.nextLine();
+        if(accCode.isEmpty()){
+            System.out.println("Account code cannot be empty!");
+            return;
+        }
+        try{
+            List<Operation> operations = opService.getAll(accCode);
+            if(operations.isEmpty()){
+                System.out.println("No operations found for this account.");
+            }else{
+                System.out.println("Operations for account " + accCode + ":");
+                for(Operation op : operations){
+                    if(op instanceof Deposit){
+                        Deposit dep = (Deposit) op;
+                        System.out.println("Deposit of " + dep.getAmount() + " on " + dep.getDate() + " from " + dep.getSource());
+                    }else if(op instanceof Withdrawal){
+                        Withdrawal wit = (Withdrawal) op;
+                        System.out.println("Withdrawal of " + wit.getAmount() + " on " + wit.getDate() + " to " + wit.getDestination());
+                    }
+                }
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
