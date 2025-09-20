@@ -1,6 +1,6 @@
 package io.github.alirostom1.cbank.model.entity;
 
-import java.util.UUID;
+
 import java.time.LocalDateTime;
 import io.github.alirostom1.cbank.model.enums.Destination;
 

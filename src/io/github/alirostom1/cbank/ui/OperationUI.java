@@ -18,7 +18,7 @@ public class OperationUI{
         this.opService = opService;
     }
     
-    public void run(){
+    public void run() throws InterruptedException{
         while(true){
             System.out.println("***********Operation Menu***********");
             System.out.println("**1. Make a deposit");
@@ -41,8 +41,9 @@ public class OperationUI{
                     //displayOperations();
                     break;
                 case 5 : 
-                    System.out.println("Exiting...");
-                    break;
+                    System.out.println("Returning...");
+                    Thread.sleep(3000);
+                    return;
                 default:
                     break;
             }

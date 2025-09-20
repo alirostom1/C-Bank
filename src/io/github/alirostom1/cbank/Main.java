@@ -4,13 +4,8 @@ import io.github.alirostom1.cbank.util.DatabaseConnection;
 import java.sql.Connection;
 import io.github.alirostom1.cbank.repository.*;
 import io.github.alirostom1.cbank.repository.Interface.*;
-import io.github.alirostom1.cbank.model.entity.*;
 import io.github.alirostom1.cbank.service.*;
 import io.github.alirostom1.cbank.service.Interface.*;
-import java.sql.SQLException;
-import java.util.Random;
-import java.util.Optional;
-import java.util.Scanner;
 import io.github.alirostom1.cbank.ui.*;
 
 

@@ -65,29 +65,30 @@ public class OperationRepositoryImpl implements OperationRepositoryInterface{
                     try(PreparedStatement stmt2 = connection.prepareStatement(query)){
                         stmt2.setString(1,rs.getString("id"));
                         ResultSet rs2 = stmt2.executeQuery();
-                    }
-                    Withdrawal op = new Withdrawal(
+                        rs2.next();
+                        Withdrawal op = new Withdrawal(
                                                 rs.getString("id"),
                                                 rs.getTimestamp("date").toLocalDateTime(),
                                                 rs.getDouble("amount"),
                                                 rs.getString("code"),
-                                                Destination.valueOf(rs.getString("destination"))
+                                                Destination.valueOf(rs2.getString("destination"))
                                             );
-                    ops.add(op);  
+                        ops.add(op);  
+                    }
                 }else{
                     query = "Select * from deposits where id = ? ";
                     try(PreparedStatement stmt2 = connection.prepareStatement(query)){
                         stmt2.setString(1,rs.getString("id"));
                         ResultSet rs2 = stmt2.executeQuery();
-                    }
-                    Deposit op = new Deposit(
+                        Deposit op = new Deposit(
                                             rs.getString("id"),
                                             rs.getTimestamp("date").toLocalDateTime(),
                                             rs.getDouble("amount"),
                                             rs.getString("code"),
-                                            Source.valueOf(rs.getString("source"))
+                                            Source.valueOf(rs2.getString("source"))
                                     );
-                    ops.add(op);
+                        ops.add(op);
+                    }
                 }
             }
         return ops;

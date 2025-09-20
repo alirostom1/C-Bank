@@ -1,9 +1,9 @@
 package io.github.alirostom1.cbank.service;
 
 import io.github.alirostom1.cbank.service.Interface.AccountServiceInterface;
-import io.github.alirostom1.cbank.repository.AccountRepositoryImpl;
 import io.github.alirostom1.cbank.repository.Interface.AccountRepositoryInterface;
 import io.github.alirostom1.cbank.model.entity.SavingsAccount;
+import io.github.alirostom1.cbank.model.entity.Account;
 import io.github.alirostom1.cbank.model.entity.CheckingsAccount;
 import io.github.alirostom1.cbank.util.Generator;
 import java.sql.SQLException;
@@ -37,5 +37,13 @@ public class AccountServiceImpl implements AccountServiceInterface{
             }
         }
         return Optional.empty();
+    }
+    public Optional<Account> getAccountByCode(String code) {
+        try {
+            return accountRepository.findByCode(code);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
 }
