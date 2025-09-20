@@ -1,6 +1,9 @@
 package io.github.alirostom1.cbank.ui;
 
+import io.github.alirostom1.cbank.model.entity.Account;
 import io.github.alirostom1.cbank.service.Interface.AccountServiceInterface;
+
+import java.util.Optional;
 import java.util.Scanner;
 
 
@@ -23,10 +26,10 @@ public class AccountUI{
                     createAccount();
                     break;
                 case 2:
-                    //displayAccountDetails();
+                    displayAccountDetails();
                     break;
                 case 3 : 
-                    System.out.println("Exiting...");
+                    System.out.println("Returning...");
                     Thread.sleep(3000);
                     return;
                 default:
@@ -43,5 +46,26 @@ public class AccountUI{
         System.out.println("Press Anything to move further !");
         scanner.nextLine();
         return;
+    }
+    public void displayAccountDetails(){
+        System.out.println("Please enter your account code: ");
+        String accCode = scanner.nextLine();
+        if(accCode.isEmpty()){
+            System.out.println("Account code cannot be empty!");
+            return;
+        }
+        Optional<Account> accountOpt = accountService.getAccountByCode(accCode);
+        if(accountOpt.isPresent()){
+            Account account = accountOpt.get();
+            account.displayDetails();
+            System.out.println("Press Anything to move further !");
+            scanner.nextLine();
+            return;
+        }else{
+            System.out.println("Account not found!");
+            System.out.println("Press Anything to move further !");
+            scanner.nextLine();
+            return;
+        }
     }
 }
