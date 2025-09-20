@@ -1,7 +1,6 @@
 package io.github.alirostom1.cbank.service;
 
 import io.github.alirostom1.cbank.service.Interface.AccountServiceInterface;
-import io.github.alirostom1.cbank.repository.AccountRepositoryImpl;
 import io.github.alirostom1.cbank.repository.Interface.AccountRepositoryInterface;
 import io.github.alirostom1.cbank.model.entity.SavingsAccount;
 import io.github.alirostom1.cbank.model.entity.CheckingsAccount;

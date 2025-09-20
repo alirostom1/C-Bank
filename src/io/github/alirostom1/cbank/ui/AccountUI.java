@@ -1,6 +1,5 @@
 package io.github.alirostom1.cbank.ui;
 
-import io.github.alirostom1.cbank.service.AccountServiceImpl;
 import io.github.alirostom1.cbank.service.Interface.AccountServiceInterface;
 import java.util.Scanner;
 
