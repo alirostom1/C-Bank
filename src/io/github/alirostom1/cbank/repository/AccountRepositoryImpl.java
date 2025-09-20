@@ -78,7 +78,7 @@ public class AccountRepositoryImpl implements AccountRepositoryInterface{
             stmt.setString(1,code);
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
-                if(rs.getString("account_type").equals("Savings")){
+                if(rs.getString("account_type").equalsIgnoreCase("Savings")){
                     SavingsAccount saveAcc = new SavingsAccount(code,rs.getDouble("balance")); 
                     query = "SELECT * FROM savingsaccounts where code = ?";
                     try(PreparedStatement stmt2 = connection.prepareStatement(query)){
@@ -89,7 +89,7 @@ public class AccountRepositoryImpl implements AccountRepositoryInterface{
                             return Optional.of(saveAcc);
                         }
                     }
-                }else if(rs.getString("account_type").equals("checkings")){
+                }else if(rs.getString("account_type").equalsIgnoreCase("checkings")){
                     CheckingsAccount checkAcc = new CheckingsAccount(code,rs.getDouble("balance"));
                     query = "SELECT * from checkingsaccounts where code = ?";
                     try(PreparedStatement stmt2 = connection.prepareStatement(query)){
