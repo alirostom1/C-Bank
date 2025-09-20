@@ -6,11 +6,19 @@ public abstract class Operation{
     protected UUID id;
     protected LocalDateTime date;
     protected double amount;
-    
-    public Operation(double amount){
+    protected String code;
+
+    public Operation(String id,LocalDateTime date,double amount,String code){
+        this.id = UUID.fromString(id);
+        this.date = date;
+        this.amount = amount;
+        this.code = code;
+    }
+    public Operation(double amount,String code){
         this.id = UUID.randomUUID();
         this.date = LocalDateTime.now();
         this.amount = amount;
+        this.code = code;
     }
     public UUID getId(){
         return this.id;
@@ -29,6 +37,12 @@ public abstract class Operation{
     }
     public void setAmount(double amount){
         this.amount = amount;
+    }
+    public String getCode(){
+        return this.code;
+    }
+    public void setCode(String code){
+        this.code = code;
     }
 
 }
