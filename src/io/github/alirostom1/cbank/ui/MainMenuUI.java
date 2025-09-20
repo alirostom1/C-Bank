@@ -5,9 +5,11 @@ import java.util.Scanner;
 public class MainMenuUI{
     private final Scanner scanner = new Scanner(System.in);
     private final AccountUI accountUI;
+    private final OperationUI operationUI;
 
-    public MainMenuUI(AccountUI accountUI){
+    public MainMenuUI(AccountUI accountUI,OperationUI operationUI){
         this.accountUI = accountUI;
+        this.operationUI = operationUI;
     }
 
     public void run() throws InterruptedException{
@@ -22,6 +24,7 @@ public class MainMenuUI{
                     accountUI.run();
                     break;
                 case 2 :
+                    operationUI.run();
                     break;
                 case 3:
                     System.out.println("Exiting...");
