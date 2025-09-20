@@ -27,4 +27,5 @@ Application console en Java 8 permettant de gérer les comptes bancaires (couran
 
 ## Execeute the program
 ```bash
-java -jar dist/cbank.jar
+java -cp "dist/cbank.jar:src/io/github/alirostom1/cbank/drivers/mysql-connector-j-9.4.0.jar" io.github.alirostom1.cbank.Main 
+
