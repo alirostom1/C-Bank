@@ -18,11 +18,14 @@ public final class Main{
     public static void main(String[] args){
         Connection connection = DatabaseConnection.getInstance().getConnection();
         AccountRepositoryInterface accountRepository = new AccountRepositoryImpl(connection);
+        OperationRepositoryInterface operationRepository = new OperationRepositoryImpl(connection);
+        OperationServiceInterface operationService = new OperationServiceImpl(operationRepository,accountRepository);
         AccountServiceInterface accountService = new AccountServiceImpl(accountRepository);
+        OperationUI operationUI = new OperationUI(operationService);
         AccountUI accountUI = new AccountUI(accountService);
-        MainMenuUI mainmenu = new MainMenuUI(accountUI);
+        MainMenuUI mainMenuUI = new MainMenuUI(accountUI,operationUI);
         try{
-            mainmenu.run();
+            mainMenuUI.run();    
         }catch(InterruptedException e){
             e.printStackTrace();
         }
