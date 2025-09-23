@@ -8,7 +8,8 @@ Application console en Java 8 permettant de gérer les comptes bancaires (couran
 - JDBC mysql
 - Java Time API
 - UUID
-
+## Liens utiles
+- [jira](https://alirostom2201.atlassian.net/jira/software/projects/CB/boards/68/backlog)
 ## Structure du projet
 - `src/com/cbank/model` : classes métier (Compte, CompteCourant, CompteEpargne, Operation, Versement, Retrait)
 - `src/com/cbank/service` : logique métier (BankService)
